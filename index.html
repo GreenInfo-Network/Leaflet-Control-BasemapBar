@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>L.TileLayer.BasemapBar Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Leaflet! -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <!-- the L.Control.BasemapBar files -->
+    <link rel="stylesheet" type="text/css" href="dist/leaflet-control-basemapbar.css" />
+    <script type="text/javascript" src="dist/leaflet-control-basemapbar.js"></script>
+
+    <!-- demo assets -->
+    <!-- most notably the Bing and Google APIs then the Leaflet plugins -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.16"></script>
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script type="text/javascript" src="leaflet-tilelayer-bing.js"></script>
+    <script type="text/javascript" src="leaflet-google.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+
+    <style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body onLoad="init();">
+
+    <div id="map"></div>
+
+</body>
+</html>
