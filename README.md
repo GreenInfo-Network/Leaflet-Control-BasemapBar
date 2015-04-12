@@ -5,7 +5,11 @@ Supports Bing, Google, and of course TileLayer.
 
 # Requirements
 
-The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones. https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-tilelayer-bing.js https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-google.js
+The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones.
+
+https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-tilelayer-bing.js
+
+https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-google.js
 
 # Example of Usage
 
