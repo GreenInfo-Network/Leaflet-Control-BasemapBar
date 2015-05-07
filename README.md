@@ -28,13 +28,15 @@ See index.html and index.js for a working example.
             type:'xyz',
             label:'esri topo',
             url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
-            attrib:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
+            attrib:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>',
+            tooltip: 'ESRI Topographic Basemap'
         },
         {
             type:'xyz',
             label:'osm',
             url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            attrib:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
+            attrib:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
+            tooltip: 'Open Street Map'
         }
     ];
 
@@ -57,6 +59,7 @@ All basemap options must have a _type_ attribute and a _label_ attribute. Depend
 * An ordinary L.TileLayer
   * **type:'xyz'**
   * **label** -- The unique name, and also and visible label, of this basemap option.
+  * **tooltip** -- A tooltip displayed when the mouse hovers over the button for this layer. Optional, default to "".
   * **url** -- The URL template for this L.TileLayer. Passed to L.TileLayer as-is.
   * **attrib** -- The attribution HTML. Passed to L.TileLayer as-is.
 

@@ -7,13 +7,15 @@ var basemap_listing = [
         type: 'bing',
         label:'b road',
         url:'street',
-        apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N"
+        apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N",
+        tooltip: 'Bing Streets Map'
     },
     {
         type: 'bing',
         label:'b photo',
         url:'aerial',
-        apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N"
+        apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N",
+        tooltip: 'Bing Photo/Satellite Imagery'
     },
     /* Google options
      * url -- string; the basemap type, any one of of these: streets, satellite, hybrid, terrain
@@ -21,12 +23,14 @@ var basemap_listing = [
     {
         type: 'google',
         label:'G Streets',
-        url:'streets'
+        url:'streets',
+        tooltip: 'Google Streets Map'
     },
     {
         type: 'google',
         label:'G Sat',
-        url:'hybrid'
+        url:'hybrid',
+        tooltip: 'Google Photo/Satellite Imagery'
     },
     /* plain L.TileLayer options
      * url     -- string; the URL template, passed to L.TileLayer as-is
@@ -34,21 +38,17 @@ var basemap_listing = [
      */
     {
         type:'xyz',
-        label:'cpad',
-        url:'http://tilestache-cdn-1.greeninfo.org/tilestache/tilestache.py/basemap_withlabels/{z}/{x}/{y}.jpg',
-        attrib:'Map tiles and parks data by <a target="_blank" href="http://www.greeninfo.org">GreenInfo Network</a>.<br />Streets data by <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
-    },
-    {
-        type:'xyz',
         label:'esri topo',
         url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
-        attrib:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
+        attrib:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>',
+        tooltip: 'ESRI Topographic Basemap'
     },
     {
         type:'xyz',
         label:'osm',
         url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        attrib:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
+        attrib:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
+        tooltip: 'Open Street Map'
     }
 ];
 

@@ -85,9 +85,12 @@ L.Control.BasemapBar = L.Control.extend({
         var controlDiv = L.DomUtil.create('div', 'leaflet-control-basemapbar');
         for (var i=0, l=this.options.layers.length; i<l; i++) {
             var label            = this.options.layers[i].label;
+            var tooltip          = this.options.layers[i].tooltip ? this.options.layers[i].tooltip : '';
+
             var button           = L.DomUtil.create('div', 'leaflet-control-basemapbar-option', controlDiv);
             button.control       = this;
             button.innerHTML     = label.toUpperCase();
+            button.title         = tooltip;
             button['data-layer'] = label;
 
             // on a click on a button, it calls the control's selectLayer() method by name
