@@ -93,8 +93,3 @@ All basemap options must have a _type_ attribute and a _label_ attribute. Depend
   * **label** -- The unique name, and also and visible label, of this basemap option.
   * **url** -- Which Google basemap offering? Valid values are: _street_   _aerial_
 
-# Disclaimers
-
-The Bing and Google libraries for Leaflet ("Leaflet plugins") were provided by their respective authors for use by the public, and L.Control.BasemapBar presumes that these plugins are the ones used for displaying these basemap options.
-
-The Github page contains references to these plugins for purposes of demonstrating that the basemap switcher works, but these Leaflet plugins are not part of the L.Control.BasemapBar distribution, and no ownership nor authorship is claimed by GreenInfo Network.
