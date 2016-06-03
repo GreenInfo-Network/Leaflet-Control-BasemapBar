@@ -65,5 +65,5 @@ function init() {
     // add the basemap picker
     // then pick a layer by its unique "label"
     var basemap_control = new L.Control.BasemapBar({ layers:basemap_listing }).addTo(map);
-    basemap_control.expandUI().selectLayer('cpad');
+    basemap_control.expandUI().selectLayer('esri topo');
 }
