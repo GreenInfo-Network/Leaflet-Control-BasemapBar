@@ -2,6 +2,9 @@
 
 A Leaflet control for adding an attractive basemap bar. Supports Bing, Google, and of course TileLayer.
 
+https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar
+
+http://greeninfo-network.github.io/Leaflet-Control-BasemapBar/
 
 # Requirements for Bing and Google
 
