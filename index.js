@@ -33,22 +33,26 @@ var basemap_listing = [
         tooltip: 'Google Photo/Satellite Imagery'
     },
     /* plain L.TileLayer options
-     * url     -- string; the URL template, passed to L.TileLayer as-is
-     * attribs -- string; the attribution HTML, passed to L.TileLayer as-is
+     * url              -- string; the URL template, passed to L.TileLayer as-is
+     * tileLayerOptions -- object; any non-default L.TileLayer options to pass to the L.TileLayer e.g. attributions and subdomains
      */
     {
         type:'xyz',
         label:'esri topo',
         url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
-        attrib:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>',
-        tooltip: 'ESRI Topographic Basemap'
+        tooltip: 'ESRI Topographic Basemap',
+        tileLayerOptions: {
+            attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>',
+        }
     },
     {
         type:'xyz',
         label:'osm',
         url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        attrib:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
-        tooltip: 'Open Street Map'
+        tooltip: 'Open Street Map',
+        tileLayerOptions: {
+            attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>',
+        }
     }
 ];
 
