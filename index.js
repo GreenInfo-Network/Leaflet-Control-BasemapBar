@@ -17,6 +17,13 @@ var basemap_listing = [
         apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N",
         tooltip: 'Bing Photo/Satellite Imagery'
     },
+    {
+        type: 'bing',
+        label:'b photo+labels',
+        url:'aerialwithlabels',
+        apikey:"AjBuYw8goYn_CWiqk65Rbf_Cm-j1QFPH-gGfOxjBipxuEB2N3n9yACKu5s8Dl18N",
+        tooltip: 'Bing Photo/Satellite Imagery With Labels'
+    },
     /* Google options
      * url -- string; the basemap type, any one of of these: streets, satellite, hybrid, terrain
      */
