@@ -86,10 +86,10 @@ All basemap options must have a _type_ attribute and a _label_ attribute. Depend
 * A Bing basemap option
   * **type:'bing'**
   * **label** -- The unique name, and also and visible label, of this basemap option.
-  * **url** -- Which Bing basemap offering? Valid values are: _streets_   _satellite_   _hybrid_   _terrain_
+  * **url** -- Which Bing basemap offering? Valid values are: _street_   _aerial_  _aerialwithlabels_
 
 * A Google basemap option
   * **type:'google'**
   * **label** -- The unique name, and also and visible label, of this basemap option.
-  * **url** -- Which Google basemap offering? Valid values are: _street_   _aerial_
+  * **url** -- Which Google basemap offering? Valid values are: _streets_   _satellite_   _hybrid_   _terrain_
 

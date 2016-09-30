@@ -70,6 +70,9 @@ L.Control.BasemapBar = L.Control.extend({
                         case 'street':
                             this._layers[ layeroption.label ] = new L.BingLayer(layeroption.apikey, { zIndex:-1, type:'Road' });
                             break;
+                        case 'aerialwithlabels':
+                            this._layers[ layeroption.label ] = new L.BingLayer(layeroption.apikey, { zIndex:-1, type:'AerialWithLabels' });
+                            break;
                         default:
                             throw("L.Control.BasemapBar: Unknown Bing subtype ("+layeroption.url+") Must be: street, aerial");
                             break;
