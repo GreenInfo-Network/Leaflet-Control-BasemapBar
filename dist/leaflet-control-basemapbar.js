@@ -125,7 +125,7 @@ L.Control.BasemapBar = L.Control.extend({
             });
 
         this.opener = L.DomUtil.create('div', 'leaflet-control-basemapbar-open', controlDiv);
-        this.opener.innerHTML = '&gt; Base Maps';
+        this.opener.innerHTML = '&lt; Base Maps';
         this.opener.title     = 'Show options for the base map';
         this.opener.control   = this;
         L.DomEvent
