@@ -1,0 +1,20 @@
+{
+  "name": "leaflet-control-basemapbar",
+  "version": "1.1.2",
+  "description": "Leaflet control for an attractive basemap bar",
+  "main": "dist/leaflet-control-basemapbar.js",
+  "style": "dist/leaflet-control-basemapbar.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar.git"
+  },
+  "author": "GreenInfo Network <gin@greeninfo.org> (http://www.greeninfo.org/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar/issues"
+  },
+  "homepage": "https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar"
+}
