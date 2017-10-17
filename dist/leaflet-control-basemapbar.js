@@ -22,8 +22,8 @@ L.Control.BasemapBar = L.Control.extend({
         // create an internal registry entry for each layer-option, mapping the button text onto the L.tileLayer instance
         // this is the key to the selectLayer() function being able to identify which layer is desired
         this._layers = {};
-        for (var i=0, l=this.options.layers.length; i<l; i++) {
-            var layeroption = this.options.layers[i];
+        for (var li=0, ll=this.options.layers.length; li<ll; li++) {
+            var layeroption = this.options.layers[li];
 
             // preprocessing
             // standardize the capitalization to always be lowercase; makes things more consistent when testing
@@ -75,21 +75,19 @@ L.Control.BasemapBar = L.Control.extend({
                             break;
                         default:
                             throw("L.Control.BasemapBar: Unknown Bing subtype ("+layeroption.url+") Must be: street, aerial");
-                            break;
                     }
                     break;
                 default:
                     throw("L.Control.BasemapBar: Unknown layer 'type' ("+layeroption.type+") Must be: xyz, bing, google");
-                    break;
             } // end of layer type switch
         }
 
         // pass 2
         // create a button for each registered layer, complete with a data attribute for the layer to get toggled, and a linkage to the parent control
         var controlDiv = L.DomUtil.create('div', 'leaflet-control-basemapbar');
-        for (var i=0, l=this.options.layers.length; i<l; i++) {
-            var label            = this.options.layers[i].label;
-            var tooltip          = this.options.layers[i].tooltip ? this.options.layers[i].tooltip : '';
+        for (var di=0, dl=this.options.layers.length; di<dl; di++) {
+            var label            = this.options.layers[di].label;
+            var tooltip          = this.options.layers[di].tooltip ? this.options.layers[di].tooltip : '';
 
             var button           = L.DomUtil.create('div', 'leaflet-control-basemapbar-option', controlDiv);
             button.control       = this;
