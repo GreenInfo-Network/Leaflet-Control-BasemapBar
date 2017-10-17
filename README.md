@@ -6,6 +6,25 @@ https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar
 
 http://greeninfo-network.github.io/Leaflet-Control-BasemapBar/
 
+
+# Installation
+
+Download the release and unpack it, or install it via package manager:
+* `npm i leaflet-control-basemapbar`
+
+Include the CSS and JS files using tags as usual:
+```
+<script type="text/javascript" src="leaflet-control-basemapbar/dist/leaflet-control-basemapbar.js"></script>
+<link rel="stylesheet" type="text/css" href="leaflet-control-basemapbar/dist/leaflet-control-basemapbar.css" />
+```
+
+Or `require` them:
+```
+require('leaflet-control-accordionlegend/dist/leaflet-control-basemapbar.js');
+require('leaflet-control-accordionlegend/dist/leaflet-control-basemapbar.css');
+```
+
+
 # Requirements for Bing and Google
 
 The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones.
