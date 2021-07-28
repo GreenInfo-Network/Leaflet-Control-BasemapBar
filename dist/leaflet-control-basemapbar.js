@@ -84,6 +84,7 @@ L.Control.BasemapBar = L.Control.extend({
 
         // pass 2
         // create a button for each registered layer, complete with a data attribute for the layer to get toggled, and a linkage to the parent control
+        // give them tabindex and a keydown-Enter handler, for keyboard usability
         var controlDiv = L.DomUtil.create('div', 'leaflet-control-basemapbar');
         for (var di=0, dl=this.options.layers.length; di<dl; di++) {
             var label            = this.options.layers[di].label;
@@ -93,11 +94,16 @@ L.Control.BasemapBar = L.Control.extend({
             button.control       = this;
             button.innerHTML     = label;
             button.title         = tooltip;
+            button.tabIndex      = 0;
             button['data-layer'] = label;
 
             // on a click on a button, it calls the control's selectLayer() method by name
             L.DomEvent.addListener(button, 'click', function () {
                 this.control.selectLayer( this['data-layer'] );
+            });
+            button.addEventListener('keypress', function (e) {
+                if (e.key !== 'Enter') return;
+                e.target.click();
             });
 
             // add the button to our internal random-access list, so we can arbitrarily fetch buttons later, e.g. to toggle one programatically
@@ -105,20 +111,35 @@ L.Control.BasemapBar = L.Control.extend({
         }
 
         // afterthought: add Open and Close buttons to the list, which when clicked, expands/collapses the other buttons
+        // give them tabindex and a keydown-Enter handler, for keyboard usability
         this.closer = L.DomUtil.create('div', 'leaflet-control-basemapbar-close', controlDiv);
         this.closer.innerHTML = '&#9656;';
         this.closer.title     = 'Hide basemap selector';
+        this.closer.tabIndex  = 0;
         this.closer.control   = this;
+
         L.DomEvent.addListener(this.closer, 'click', function () {
             this.control.collapseUI();
+        });
+        this.closer.addEventListener('keypress', (e) => {
+            if (e.key !== 'Enter') return;
+            this.closer.click();
+            this.opener.focus();  // Safari doesn't support focus() and has other accessibility issues
         });
 
         this.opener = L.DomUtil.create('div', 'leaflet-control-basemapbar-open', controlDiv);
         this.opener.innerHTML = '<span>&#9666;</span> Base Maps';
         this.opener.title     = 'Show options for the base map';
+        this.opener.tabIndex  = 0;
         this.opener.control   = this;
+
         L.DomEvent.addListener(this.opener, 'click', function () {
             this.control.expandUI();
+        });
+        this.opener.addEventListener('keypress', (e) => {
+            if (e.key !== 'Enter') return;
+            this.opener.click();
+            this.closer.focus();  // Safari doesn't support focus() and has other accessibility issues
         });
 
         // keep mouse events from falling through to the map: don't drag-pan or double-click the map on accident
