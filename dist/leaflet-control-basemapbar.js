@@ -27,7 +27,7 @@ L.Control.BasemapBar = L.Control.extend({
 
             // preprocessing
             // standardize the capitalization to always be lowercase; makes things more consistent when testing
-            layeroption.label = layeroption.label.toLowerCase();
+            layeroption.label = layeroption.label;
 
             switch (layeroption.type) {
                 case 'xyz':
@@ -91,19 +91,14 @@ L.Control.BasemapBar = L.Control.extend({
 
             var button           = L.DomUtil.create('div', 'leaflet-control-basemapbar-option', controlDiv);
             button.control       = this;
-            button.innerHTML     = label.toUpperCase();
+            button.innerHTML     = label;
             button.title         = tooltip;
             button['data-layer'] = label;
 
             // on a click on a button, it calls the control's selectLayer() method by name
-            L.DomEvent
-                .addListener(button, 'mousedown', L.DomEvent.stopPropagation)
-                .addListener(button, 'click', L.DomEvent.stopPropagation)
-                .addListener(button, 'click', L.DomEvent.preventDefault)
-                .addListener(button, 'click', function () {
-                    // select the given basemap
-                    this.control.selectLayer( this['data-layer'] );
-                });
+            L.DomEvent.addListener(button, 'click', function () {
+                this.control.selectLayer( this['data-layer'] );
+            });
 
             // add the button to our internal random-access list, so we can arbitrarily fetch buttons later, e.g. to toggle one programatically
             this.buttons[label] = button;
@@ -111,28 +106,24 @@ L.Control.BasemapBar = L.Control.extend({
 
         // afterthought: add Open and Close buttons to the list, which when clicked, expands/collapses the other buttons
         this.closer = L.DomUtil.create('div', 'leaflet-control-basemapbar-close', controlDiv);
-        this.closer.innerHTML = '&gt;';
+        this.closer.innerHTML = '&#9656;';
         this.closer.title     = 'Hide basemap selector';
         this.closer.control   = this;
-        L.DomEvent
-            .addListener(this.closer, 'mousedown', L.DomEvent.stopPropagation)
-            .addListener(this.closer, 'click', L.DomEvent.stopPropagation)
-            .addListener(this.closer, 'click', L.DomEvent.preventDefault)
-            .addListener(this.closer, 'click', function () {
-                this.control.collapseUI();
-            });
+        L.DomEvent.addListener(this.closer, 'click', function () {
+            this.control.collapseUI();
+        });
 
         this.opener = L.DomUtil.create('div', 'leaflet-control-basemapbar-open', controlDiv);
-        this.opener.innerHTML = '&lt; Base Maps';
+        this.opener.innerHTML = '<span>&#9666;</span> Base Maps';
         this.opener.title     = 'Show options for the base map';
         this.opener.control   = this;
-        L.DomEvent
-            .addListener(this.opener, 'mousedown', L.DomEvent.stopPropagation)
-            .addListener(this.opener, 'click', L.DomEvent.stopPropagation)
-            .addListener(this.opener, 'click', L.DomEvent.preventDefault)
-            .addListener(this.opener, 'click', function () {
-                this.control.expandUI();
-            });
+        L.DomEvent.addListener(this.opener, 'click', function () {
+            this.control.expandUI();
+        });
+
+        // keep mouse events from falling through to the map: don't drag-pan or double-click the map on accident
+        L.DomEvent.disableClickPropagation(controlDiv);
+        L.DomEvent.disableScrollPropagation(controlDiv);
 
         // and on launch.... collapse the UI
         this.collapseUI();

@@ -10,51 +10,65 @@
     cursor:pointer;
 }
 
-.leaflet-control-basemapbar > div {
-    font-size: 13px;
-    color: #444;
-    display:inline-block;
-    padding:0.25em .75em 0.25em .75em;
-    border-left: 1px solid rgba(0,0,0,0.25);
-    line-height:2.3;
-}
-.leaflet-control-basemapbar > div:last-child {
-    border:none;
-}
 
-
-.leaflet-control-basemapbar-option:hover {
-    background: #e0e0e0;
-}
-
-.leaflet-control-basemapbar-option-active {
-    color:white !important;
-    background-color:black !important;
-}
-.leaflet-control-basemapbar-option:first-child {
-    border-bottom-left-radius:3px;
-    border-top-left-radius:3px;
-}
-.leaflet-control-basemapbar-option:last-child {
-    border-bottom-right-radius:3px;
-    border-top-right-radius:3px;
-
-    border-right:0 none transparent;
-}
-
-.leaflet-control-basemapbar-open {
-    border-radius:3px;
-}
-.leaflet-control-basemapbar-open span {
-    font-size: 23px;
-    line-height:2;
-}
-.leaflet-control-basemapbar-close {
-    border-top-right-radius:3px;
-    border-bottom-right-radius:3px;
-    font-size:7pt;
-}
+/*
+ * basic concept of being opened/closed
+ */
 
 .leaflet-control-basemapbar .leaflet-control-basemapbar-hidden {
     display:none;
+}
+
+
+/*
+ * side-by-side display of the topions, open, and close DIVs
+ */
+
+.leaflet-control-basemapbar {
+    display: flex;
+    flex-direction: row;
+}
+
+.leaflet-control-basemapbar > div {
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/*
+ * styles for the base map options
+ */
+
+.leaflet-control-basemapbar .leaflet-control-basemapbar-option {
+    font-size: 15px;
+    line-height: 30px;
+    padding: 0 10px;
+    border-right: 1px solid silver;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-option.leaflet-control-basemapbar-option-active {
+    color: white !important;
+    background-color: black !important;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-option:hover {
+    background: #e0e0e0;
+}
+
+
+/*
+ * styles for the open & close buttons
+ */
+
+.leaflet-control-basemapbar .leaflet-control-basemapbar-open {
+    font-size: 15px;
+    padding: 0 10px;
+    line-height: 28px;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-open span {
+    font-size: 20px;
+}
+
+.leaflet-control-basemapbar .leaflet-control-basemapbar-close {
+    font-size: 25px;
+    line-height: 30px;
+    padding: 0 10px;
 }
