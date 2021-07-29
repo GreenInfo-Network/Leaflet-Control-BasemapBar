@@ -39,6 +39,25 @@ See index.html and index.js for a working example.
 
     var basemap_listing = [
         {
+            type:'xyz',
+            label:'ESRI Topo',
+            tooltip: 'ESRI Topographic Basemap'
+            url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+            tileLayerOptions: {
+                attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
+            }
+        },
+        {
+            type:'xyz',
+            label:'OSM',
+            tooltip: 'Open Street Map',
+            url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            tileLayerOptions: {
+                attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
+            }
+        },
+        /* untested in Leaflet 1.x
+        {
             type: 'google',
             label:'G Sat',
             url:'hybrid',
@@ -51,24 +70,7 @@ See index.html and index.js for a working example.
             apikey:"XXXYYYZZZAAABBBCCC",
             tooltip: 'Bing Streets Map'
         },
-        {
-            type:'xyz',
-            label:'esri topo',
-            tooltip: 'ESRI Topographic Basemap'
-            url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
-            tileLayerOptions: {
-                attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
-            }
-        },
-        {
-            type:'xyz',
-            label:'osm',
-            tooltip: 'Open Street Map',
-            url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            tileLayerOptions: {
-                attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
-            }
-        }
+        */
     ];
 
     new L.Control.BasemapBar({ layers:basemap_listing }).addTo(map);
