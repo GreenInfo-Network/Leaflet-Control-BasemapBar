@@ -25,14 +25,6 @@ require('leaflet-control-accordionlegend/dist/leaflet-control-basemapbar.css');
 ```
 
 
-# Requirements for Bing and Google
-
-The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones.
-
-https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-tilelayer-bing.js
-
-https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-google.js
-
 # Example of Usage
 
 See index.html and index.js for a working example.
@@ -111,4 +103,15 @@ All basemap options must have a _type_ attribute and a _label_ attribute. Depend
   * **type:'google'**
   * **label** -- The unique name, and also and visible label, of this basemap option.
   * **url** -- Which Google basemap offering? Valid values are: _streets_   _satellite_   _hybrid_   _terrain_
+
+
+# Requirements for Bing and Google
+
+**This was accurate for Leaflet 0.7 but will not work in Leaflet 1.x. TODO: Update these instructions.**
+
+The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones.
+
+https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-tilelayer-bing.js
+
+https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-google.js
 
