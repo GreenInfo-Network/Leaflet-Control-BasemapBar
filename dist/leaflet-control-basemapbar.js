@@ -96,6 +96,7 @@ L.Control.BasemapBar = L.Control.extend({
             var tooltip          = this.options.layers[di].tooltip ? this.options.layers[di].tooltip : '';
 
             var button             = L.DomUtil.create('button', 'leaflet-control-basemapbar-option', optionButtonsDiv);
+            button.type            = 'button';
             button.control         = this;
             button.innerHTML       = label;
             button.title           = tooltip;
@@ -114,6 +115,7 @@ L.Control.BasemapBar = L.Control.extend({
         // afterthought: add Open and Close buttons to the list, which when clicked, expands/collapses the other buttons
         // give them tabindex and a keydown-Enter handler, for keyboard usability
         this.closer = L.DomUtil.create('button', 'leaflet-control-basemapbar-close', controlDiv);
+        this.closer.type = 'button';
         this.closer.innerHTML = '&#9656;';
         this.closer.title     = 'Hide basemap selector';
         this.closer.setAttribute('aria-controls', optionButtonsDivId);
@@ -125,6 +127,7 @@ L.Control.BasemapBar = L.Control.extend({
         });
 
         this.opener = L.DomUtil.create('button', 'leaflet-control-basemapbar-open', controlDiv);
+        this.opener.type = 'button';
         this.opener.innerHTML = '<span>&#9666;</span> Base Maps';
         this.opener.title     = 'Show options for the base map';
         this.opener.setAttribute('aria-controls', optionButtonsDivId);
