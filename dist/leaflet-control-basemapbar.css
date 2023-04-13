@@ -10,6 +10,17 @@
     cursor:pointer;
 }
 
+.leaflet-control-basemapbar button {
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: black;
+    background-color: white;
+}
+
 
 /*
  * basic concept of being opened/closed
@@ -45,7 +56,7 @@
     padding: 0 10px;
     border-right: 1px solid silver;
 }
-.leaflet-control-basemapbar .leaflet-control-basemapbar-option.leaflet-control-basemapbar-option-active {
+.leaflet-control-basemapbar .leaflet-control-basemapbar-option[aria-pressed="true"] {
     color: white !important;
     background-color: black !important;
 }

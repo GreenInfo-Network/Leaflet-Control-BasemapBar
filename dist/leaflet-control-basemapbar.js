@@ -86,24 +86,25 @@ L.Control.BasemapBar = L.Control.extend({
         // create a button for each registered layer, complete with a data attribute for the layer to get toggled, and a linkage to the parent control
         // give them tabindex and a keydown-Enter handler, for keyboard usability
         var controlDiv = L.DomUtil.create('div', 'leaflet-control-basemapbar');
+
+        var optionButtonsDiv = L.DomUtil.create('span', '', controlDiv);
+        var optionButtonsDivId = 'leaflet-control-basemapbar-options-' + Math.round(1000000 * Math.random());
+        optionButtonsDiv.id = optionButtonsDivId;
+
         for (var di=0, dl=this.options.layers.length; di<dl; di++) {
             var label            = this.options.layers[di].label;
             var tooltip          = this.options.layers[di].tooltip ? this.options.layers[di].tooltip : '';
 
-            var button           = L.DomUtil.create('div', 'leaflet-control-basemapbar-option', controlDiv);
-            button.control       = this;
-            button.innerHTML     = label;
-            button.title         = tooltip;
-            button.tabIndex      = 0;
-            button['data-layer'] = label;
+            var button             = L.DomUtil.create('button', 'leaflet-control-basemapbar-option', optionButtonsDiv);
+            button.control         = this;
+            button.innerHTML       = label;
+            button.title           = tooltip;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute('data-layer', label);
 
-            // on a click on a button, it calls the control's selectLayer() method by name
+            // button click = selectLayer() with layer by name
             L.DomEvent.addListener(button, 'click', function () {
-                this.control.selectLayer( this['data-layer'] );
-            });
-            button.addEventListener('keypress', function (e) {
-                if (e.key !== 'Enter') return;
-                e.target.click();
+                this.control.selectLayer( this.getAttribute('data-layer') );
             });
 
             // add the button to our internal random-access list, so we can arbitrarily fetch buttons later, e.g. to toggle one programatically
@@ -112,34 +113,26 @@ L.Control.BasemapBar = L.Control.extend({
 
         // afterthought: add Open and Close buttons to the list, which when clicked, expands/collapses the other buttons
         // give them tabindex and a keydown-Enter handler, for keyboard usability
-        this.closer = L.DomUtil.create('div', 'leaflet-control-basemapbar-close', controlDiv);
+        this.closer = L.DomUtil.create('button', 'leaflet-control-basemapbar-close', controlDiv);
         this.closer.innerHTML = '&#9656;';
         this.closer.title     = 'Hide basemap selector';
-        this.closer.tabIndex  = 0;
+        this.closer.setAttribute('aria-controls', optionButtonsDivId);
         this.closer.control   = this;
 
         L.DomEvent.addListener(this.closer, 'click', function () {
             this.control.collapseUI();
-        });
-        this.closer.addEventListener('keypress', (e) => {
-            if (e.key !== 'Enter') return;
-            this.closer.click();
-            this.opener.focus();  // Safari doesn't support focus() and has other accessibility issues
+            this.control.opener.focus();
         });
 
-        this.opener = L.DomUtil.create('div', 'leaflet-control-basemapbar-open', controlDiv);
+        this.opener = L.DomUtil.create('button', 'leaflet-control-basemapbar-open', controlDiv);
         this.opener.innerHTML = '<span>&#9666;</span> Base Maps';
         this.opener.title     = 'Show options for the base map';
-        this.opener.tabIndex  = 0;
+        this.opener.setAttribute('aria-controls', optionButtonsDivId);
         this.opener.control   = this;
 
         L.DomEvent.addListener(this.opener, 'click', function () {
             this.control.expandUI();
-        });
-        this.opener.addEventListener('keypress', (e) => {
-            if (e.key !== 'Enter') return;
-            this.opener.click();
-            this.closer.focus();  // Safari doesn't support focus() and has other accessibility issues
+            this.control.closer.focus();
         });
 
         // keep mouse events from falling through to the map: don't drag-pan or double-click the map on accident
@@ -157,10 +150,10 @@ L.Control.BasemapBar = L.Control.extend({
         for (var tag in this.buttons) {
             var button = this.buttons[tag];
             if (tag == which) {
-                L.DomUtil.addClass(button,'leaflet-control-basemapbar-option-active');
+                button.setAttribute('aria-pressed', 'true');
                 this.map.addLayer(this._layers[tag],true);
             } else {
-                L.DomUtil.removeClass(button,'leaflet-control-basemapbar-option-active');
+                button.setAttribute('aria-pressed', 'false');
                 this.map.removeLayer(this._layers[tag]);
             }
         }
@@ -169,11 +162,10 @@ L.Control.BasemapBar = L.Control.extend({
         return this;
     },
     whichLayer: function () {
-        for (var tag in this.buttons) {
-            var button = this.buttons[tag];
-            if ( L.DomUtil.hasClass(button,'leaflet-control-basemapbar-option-active') ) return tag;
-        }
-        return null; // impossible, none of them at all
+        const selected = Object.entries(this.buttons).filter(function (entry) {
+            return entry[1].getAttribute('aria-pressed') == 'true';
+        })[0];
+        return selected ? selected[0] : null;
     },
     collapseUI: function () {
         // add the CSS which hides the picker buttons
@@ -185,6 +177,10 @@ L.Control.BasemapBar = L.Control.extend({
         // then add/remove CSS to show/hide the opener/closer button
         L.DomUtil.addClass(this.closer, 'leaflet-control-basemapbar-hidden');
         L.DomUtil.removeClass(this.opener, 'leaflet-control-basemapbar-hidden');
+
+        // set ARIA tags about the expand/collapse state
+        this.opener.ariaExpanded = 'false';
+        this.closer.ariaExpanded = 'false';
 
         // return myself cuz method chaining is awesome
         return this;
@@ -199,6 +195,10 @@ L.Control.BasemapBar = L.Control.extend({
         // then add/remove CSS to show/hide the opener/closer button
         L.DomUtil.removeClass(this.closer, 'leaflet-control-basemapbar-hidden');
         L.DomUtil.addClass(this.opener, 'leaflet-control-basemapbar-hidden');
+
+        // set ARIA tags about the expand/collapse state
+        this.opener.ariaExpanded = 'true';
+        this.closer.ariaExpanded = 'true';
 
         // return myself cuz method chaining is awesome
         return this;

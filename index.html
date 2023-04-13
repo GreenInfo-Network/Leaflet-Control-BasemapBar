@@ -33,6 +33,7 @@
         }
     </style>
     <script type="text/javascript">
+    var basemap_control;
     function init() {
         // create a simple map, centered someplace nice
         var map = L.map('map', {
@@ -80,7 +81,7 @@
                 },
             },
         ];
-        var basemap_control = new L.Control.BasemapBar({ layers: basemaps }).addTo(map);
+        basemap_control = new L.Control.BasemapBar({ layers: basemaps }).addTo(map);
         basemap_control.selectLayer('ESRI Topo').expandUI();
     }
     </script>
