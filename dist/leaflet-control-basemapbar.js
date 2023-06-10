@@ -111,15 +111,21 @@ L.Control.BasemapBar = L.Control.extend({
             // add the button to our internal random-access list, so we can arbitrarily fetch buttons later, e.g. to toggle one programatically
             this.buttons[label] = button;
         }
-
+        
         // afterthought: add Open and Close buttons to the list, which when clicked, expands/collapses the other buttons
         // give them tabindex and a keydown-Enter handler, for keyboard usability
         this.closer = L.DomUtil.create('button', 'leaflet-control-basemapbar-close', controlDiv);
         this.closer.type = 'button';
-        this.closer.innerHTML = '&#9656;';
         this.closer.title     = 'Hide basemap selector';
         this.closer.setAttribute('aria-controls', optionButtonsDivId);
         this.closer.control   = this;
+
+        // Create close icon with alt text
+        const closeIcon = L.DomUtil.create('span', '', this.closer);
+        closeIcon.innerHTML = '&#9656;';
+        closeIcon.setAttribute('role', 'img');
+        closeIcon.setAttribute('aria-label', 'Hide basemap selector');
+
 
         L.DomEvent.addListener(this.closer, 'click', function () {
             this.control.collapseUI();
@@ -128,7 +134,7 @@ L.Control.BasemapBar = L.Control.extend({
 
         this.opener = L.DomUtil.create('button', 'leaflet-control-basemapbar-open', controlDiv);
         this.opener.type = 'button';
-        this.opener.innerHTML = '<span>&#9666;</span> Base Maps';
+        this.opener.innerHTML = '<span aria-hidden="true">&#9666;</span> Base Maps';
         this.opener.title     = 'Show options for the base map';
         this.opener.setAttribute('aria-controls', optionButtonsDivId);
         this.opener.control   = this;
