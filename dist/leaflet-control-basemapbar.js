@@ -124,7 +124,7 @@ L.Control.BasemapBar = L.Control.extend({
         const closeIcon = L.DomUtil.create('span', '', this.closer);
         closeIcon.innerHTML = '&#9656;';
         closeIcon.setAttribute('role', 'img');
-        closeIcon.setAttribute('aria-label', 'Hide basemap selector');
+        closeIcon.setAttribute('aria-label', 'Base Maps');
 
 
         L.DomEvent.addListener(this.closer, 'click', function () {
