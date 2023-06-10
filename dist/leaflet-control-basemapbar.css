@@ -21,6 +21,12 @@
     background-color: white;
 }
 
+.leaflet-control-basemapbar button:focus {
+  outline: 2px solid black !important;
+  box-shadow: 0 0 0 1px white inset;
+  position: relative;
+}
+
 
 /*
  * basic concept of being opened/closed
