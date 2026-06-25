@@ -2,25 +2,13 @@
 <html>
 <head>
     <title>L.TileLayer.BasemapBar Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Leaflet! -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <!-- the L.Control.BasemapBar -->
-    <link rel="stylesheet" type="text/css" href="dist/leaflet-control-basemapbar.css" />
-    <script type="text/javascript" src="dist/leaflet-control-basemapbar.js"></script>
-
-    <style type="text/css">
-    /* hack for Leaflet 1.7.1 which only flashes ARIA outlines (though keeps focus) which misses the point of ARIA outlines */
-    .leaflet-container :focus {
-        outline-color: -webkit-focus-ring-color !important;
-        outline-style: auto !important;
-        outline-width: thin !important;
-        outline: revert !important;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="leaflet-control-basemapbar.css" />
+    <script type="text/javascript" src="leaflet-control-basemapbar.js"></script>
 
     <!-- style & code for this demo -->
     <style type="text/css">
@@ -32,63 +20,48 @@
             height: 100%;
         }
     </style>
-    <script type="text/javascript">
-    var basemap_control;
-    function init() {
-        // create a simple map, centered someplace nice
-        var map = L.map('map', {
-            minZoom: 6,
-            maxZoom: 18,
-            keyboard: true,
-        });
-        map.setView([37.7833,-122.4167], 12);
 
-        // add the basemap picker
-        // then pick a layer by its unique "label"
-        var basemaps = [
+    <script type="text/javascript">
+    let MAP;
+    document.addEventListener('DOMContentLoaded', function () {
+        MAP = L.map('map').setView([51.505, -0.09], 13);
+
+        const basemap_offerings = [
             {
-                type:'xyz',
-                label:'Positron',
-                url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-                tooltip:'Carto Positron',
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            },
-            {
-                type:'xyz',
-                label:'ESRI Topo',
-                url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
+                id: 'Topo',
                 tooltip: 'ESRI Topographic Basemap',
-                tileLayerOptions: {
-                    attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>',
-                },
+                layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg', {
+                    attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
+                }),
             },
             {
-                type:'xyz',
-                label:'OSM Standard',
-                url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                tooltip: 'OSM Standard',
-                tileLayerOptions: {
-                   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                },
+                id: 'Positron',
+                tooltip: 'Mapbox Positron',
+                layer: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+                    attribution: 'Map tiles by <a target="_blank" href="http://www.mapbox.com">MapBox</a>.<br />Data &copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributings</a>',
+                }),
             },
             {
-                type:'xyz',
-                label:'OSM Topo',
-                url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
-                tooltip: 'OSM Topo',
-                tileLayerOptions: {
-                   attribution: 'Satellite basemap &copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>',
-                },
+                id: 'OSM',
+                tooltip: 'Open Street Map',
+                layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
+                }),
             },
         ];
-        basemap_control = new L.Control.BasemapBar({ layers: basemaps }).addTo(map);
-        basemap_control.selectLayer('ESRI Topo').expandUI();
-    }
+
+        MAP.layerpicker = new L.Control.BasemapBar({
+            layers: basemap_offerings,
+            selected: 'Positron',
+            expanded: true,
+            enhancedfocus: false,
+        }).addTo(MAP);
+    });
     </script>
 </head>
-<body onLoad="init();">
+<body>
 
-    <div id="map" tabindex="0"></div>
+    <div id="map"></div>
 
 </body>
 </html>

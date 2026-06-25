@@ -1,9 +1,9 @@
 {
   "name": "leaflet-control-basemapbar",
-  "version": "1.1.2",
-  "description": "Leaflet control for an attractive basemap bar",
-  "main": "dist/leaflet-control-basemapbar.js",
-  "style": "dist/leaflet-control-basemapbar.css",
+  "version": "2.0.0",
+  "description": "Leaflet control for an attractive and accessible basemap bar",
+  "main": "leaflet-control-basemapbar.js",
+  "style": "leaflet-control-basemapbar.css",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

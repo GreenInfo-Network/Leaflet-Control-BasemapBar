@@ -1,0 +1,61 @@
+.leaflet-control-basemapbar {
+    color: #444 ;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: white;
+}
+
+.leaflet-control-basemapbar.leaflet-control-basemapbar-collapsed .leaflet-control-basemapbar-expandedcontent,
+.leaflet-control-basemapbar.leaflet-control-basemapbar-collapsed .leaflet-control-basemapbar-collapsebutton,
+.leaflet-control-basemapbar.leaflet-control-basemapbar-expanded .leaflet-control-basemapbar-expandbutton {
+    display: none;
+}
+.leaflet-control-basemapbar.leaflet-control-basemapbar-expanded .leaflet-control-basemapbar-expandedcontent {
+    display: inline-block;
+}
+
+.leaflet-control-basemapbar button {
+    height: 30px;
+    background-color: transparent;
+    border-color: transparent;
+}
+.leaflet-control-basemapbar.leaflet-control-basemapbar-enhancedfocus button:focus {
+    outline: 2px #FFFFFF solid !important;
+    box-shadow: 0 0 0 6px #000000 !important;
+    outline-offset: 2px !important;
+}
+
+.leaflet-control-basemapbar .leaflet-control-basemapbar-expandbutton {
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-collapsebutton {
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-expandedcontent {
+    padding: 0;
+    border: 0 none transparent;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-expandedcontent legend {
+    display: none;  /* WAVE complains if no legend, but we don't have/want one */
+}
+
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton {
+    background-color: white;
+    color: #444;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton:last-child {
+    border-bottom-right-radius: 3px;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton:first-of-type {
+    border-bottom-left-radius: 3px;
+    border-left: 2px solid #444;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton:not(:last-child) {
+    border-right: 2px solid #444;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton.leaflet-control-basemapbar-optionbutton-selected {
+    background-color: #444;
+    color: white;
+}
+.leaflet-control-basemapbar .leaflet-control-basemapbar-optionbutton.leaflet-control-basemapbar-optionbutton-selected:not(:last-child) {
+    border-right: 2px solid #444;
+}

@@ -1,6 +1,6 @@
 # Leaflet-Control-BasemapBar
 
-A Leaflet control for adding an attractive basemap bar. Supports Bing, Google, and of course TileLayer.
+A Leaflet control for adding an attractive basemap bar. Only supports TileLayer layers.
 
 https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar
 
@@ -9,111 +9,63 @@ http://greeninfo-network.github.io/Leaflet-Control-BasemapBar/
 
 # Installation
 
-Download the release and unpack it, or install it via package manager:
-* `npm i leaflet-control-basemapbar`
-
 Include the CSS and JS files using tags as usual:
 ```
-<script type="text/javascript" src="leaflet-control-basemapbar/dist/leaflet-control-basemapbar.js"></script>
-<link rel="stylesheet" type="text/css" href="leaflet-control-basemapbar/dist/leaflet-control-basemapbar.css" />
+<script type="text/javascript" src="leaflet-control-basemapbar.js"></script>
+<link rel="stylesheet" type="text/css" href="leaflet-control-basemapbar.css" />
 ```
 
-Or `require` them:
+Then use it:
+
 ```
-require('leaflet-control-accordionlegend/dist/leaflet-control-basemapbar.js');
-require('leaflet-control-accordionlegend/dist/leaflet-control-basemapbar.css');
+const basemap_offerings = [
+    {
+        id: 'Topo',
+        tooltip: 'ESRI Topographic Basemap'
+        layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg', {
+            attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
+        })
+    },
+    {
+        id: 'Positron',
+        tooltip: 'Mapbox Positron'
+        layer: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+            attribution: 'Map tiles by <a target="_blank" href="http://www.mapbox.com">MapBox</a>.<br />Data &copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributings</a>',
+        }),
+    },
+    {
+        id: 'OSM',
+        tooltip: 'Open Street Map',
+        layer: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
+        }}
+    },
+];
+
+const mymap = L.map();
+mymap.layerpicker = new L.Control.BasemapBar({
+    layers: basemap_offerings,
+}).addTo(mymap);
 ```
-
-
-# Example of Usage
-
-See index.html and index.js for a working example.
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.16"></script>
-    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
-    <script type="text/javascript" src="leaflet-tilelayer-bing.js"></script>
-    <script type="text/javascript" src="leaflet-google.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="dist/leaflet-control-basemapbar.css" />
-    <script type="text/javascript" src="dist/leaflet-control-basemapbar.js"></script>
-
-    var basemap_listing = [
-        {
-            type:'xyz',
-            label:'ESRI Topo',
-            tooltip: 'ESRI Topographic Basemap'
-            url:'http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}.jpg',
-            tileLayerOptions: {
-                attribution:'&copy; <a target="_blank" href="http://esri.com/" target="_blank">ESRI</a>'
-            }
-        },
-        {
-            type:'xyz',
-            label:'OSM',
-            tooltip: 'Open Street Map',
-            url:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            tileLayerOptions: {
-                attribution:'&copy; <a target="_blank" href="http://openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>'
-            }
-        },
-        /* untested in Leaflet 1.x
-        {
-            type: 'google',
-            label:'G Sat',
-            url:'hybrid',
-            tooltip: 'Google Photo/Satellite Imagery'
-        },
-        {
-            type: 'bing',
-            label:'b road',
-            url:'street',
-            apikey:"XXXYYYZZZAAABBBCCC",
-            tooltip: 'Bing Streets Map'
-        },
-        */
-    ];
-
-    new L.Control.BasemapBar({ layers:basemap_listing }).addTo(map);
 
 
 # Constructor Options
 
-* _layers_ -- A list of layer descriptions, comprising the basemap choices available. See _Layer Types_ below for details on supported layer types.
-* _position_ -- The usual L.Control positioning for the control; defaults to 'topright'
-
-# Layer Types
-
-The _layers_ parameter is a list of object literals, each one describing a basemap option.
-
-All basemap options must have a _type_ attribute and a _label_ attribute. Depending on the type, additional options are required.
-
-**The _label_ attribute must be unique** as it is both the visible label for the basemap option, and also the unique identifier for the layer instance.
-
-* An ordinary L.TileLayer
-  * **type:'xyz'**
-  * **label** -- The unique name, and also and visible label, of this basemap option.
-  * **tooltip** -- A tooltip displayed when the mouse hovers over the button for this layer. Optional, default to "".
-  * **url** -- The URL template for this L.TileLayer. Passed to L.TileLayer as-is.
-  * **tileLayerOptions** -- An object of other options to be passed to the L.TileLayer as-given, e.g. subdomains and attributions.
-
-* A Bing basemap option
-  * **type:'bing'**
-  * **label** -- The unique name, and also and visible label, of this basemap option.
-  * **url** -- Which Bing basemap offering? Valid values are: _street_   _aerial_  _aerialwithlabels_
-
-* A Google basemap option
-  * **type:'google'**
-  * **label** -- The unique name, and also and visible label, of this basemap option.
-  * **url** -- Which Google basemap offering? Valid values are: _streets_   _satellite_   _hybrid_   _terrain_
+- `layers` = A list of layers to offer, and their titles.
+  = `id` = the label to display in the bar; **this must be unique**, as this is used by `selectOption()` to trigger a selection programmatically
+  = `tooltip` = a tooltip title when mouse hovers over this choice
+  = `layer` = a L.TileLayer instance, or probably almost any type of L.Layer as long as you set its `pane` appropriately
+- `position` = The usual L.Control positioning for the control; defaults to 'topleft'
+- `expanded` = true to have the options expanded by default when the control is added; defaults to false (collapsed)
+- `expandButtonHTML` = set the HTML content of the button when the bar is collapsed
+- `collapseButtonHTML` = set the HTML content of the collapse button when the bar is expanded
+- `enhancedfocus` = adds an enhanced `:focus` outline on the control's buttons to aid people with low vision
 
 
-# Requirements for Bing and Google
+# Methods
 
-**This was accurate for Leaflet 0.7 but will not work in Leaflet 1.x. TODO: Update these instructions.**
-
-The Bing and Google support was written for two specific Leaflet plugins, so if you want to use them with this BasemapBar control you should use those same ones.
-
-https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-tilelayer-bing.js
-
-https://github.com/greeninfo/Leaflet-Control-BasemapBar/blob/master/leaflet-google.js
+- `expand()` = expand the interface
+- `collapse()` = collapse the interface
+- `whichLayer()` = get the `id` of the currently-selected layer
+- `selectLayer(layerid)` = select a layer by its `id`
 
