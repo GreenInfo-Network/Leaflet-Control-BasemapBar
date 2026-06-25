@@ -1,6 +1,6 @@
 # Leaflet-Control-BasemapBar
 
-A Leaflet control for adding an attractive basemap bar. Only supports TileLayer layers.
+A Leaflet control for adding an attractive basemap bar.
 
 https://github.com/GreenInfo-Network/Leaflet-Control-BasemapBar
 
@@ -59,7 +59,7 @@ mymap.layerpicker = new L.Control.BasemapBar({
 - `expanded` = true to have the options expanded by default when the control is added; defaults to false (collapsed)
 - `expandButtonHTML` = set the HTML content of the button when the bar is collapsed
 - `collapseButtonHTML` = set the HTML content of the collapse button when the bar is expanded
-- `enhancedfocus` = adds an enhanced `:focus` outline on the control's buttons to aid people with low vision
+- `enhancedfocus` = adds an enhanced `:focus` outline on the control's buttons to aid people with low vision; particularly useful when using basemaps with a dark color
 
 
 # Methods
